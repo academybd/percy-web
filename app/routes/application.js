@@ -13,9 +13,12 @@ export default Route.extend(ApplicationRouteMixin, EnsureStatefulLogin, {
   flashMessages: service(),
   raven: service(),
   currentUser: alias('session.currentUser'),
+  launchDarkly: service(),
+
 
   beforeModel(transition) {
     this._super(...arguments);
+    this._setupLaunchDarkly(this.get('session.currentUser'));
     if (!this.get('session.isAuthenticated')) {
       this._storeTargetTransition(transition);
 
@@ -26,6 +29,7 @@ export default Route.extend(ApplicationRouteMixin, EnsureStatefulLogin, {
         this.set('session.isAuthenticated', true);
       }
     }
+
     return this._loadCurrentUser();
   },
 
@@ -34,9 +38,18 @@ export default Route.extend(ApplicationRouteMixin, EnsureStatefulLogin, {
     // By default, it executes some pre-set redirects but we want our own redirect logic,
     // so we're not calling super here.
     this._loadCurrentUser().then(() => {
+      console.log('wut')
       this.closeLock();
       this._decideRedirect();
     });
+  },
+
+
+  _setupLaunchDarkly(user) {
+    let ldUser = {
+      key: 1,
+    };
+    return this.get('launchDarkly').initialize(ldUser);
   },
 
   _loadCurrentUser() {

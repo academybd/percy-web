@@ -33,6 +33,7 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('test-launch-darkly');
   this.route('join', {path: '/join/:invite_code'});
   this.route('auth-failure', {path: 'auth/failure'});
   this.route(AUTH_CALLBACK_ROUTE, {path: '/auth/callback'});

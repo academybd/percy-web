@@ -9,6 +9,7 @@ export default SessionService.extend({
   store: service(),
   analytics: service(),
   raven: service(),
+  launchDarkly: service(),
 
   // set by load method
   currentUser: null,
@@ -59,6 +60,7 @@ export default SessionService.extend({
       this._setupSentry(user);
       this._setupAnalytics(user);
       this._setupIntercom(user);
+      // this._setupLaunchDarkly(user);
       resolve();
     });
   },
