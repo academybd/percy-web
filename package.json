@@ -18,7 +18,7 @@
     "start-production-for-testing": "ember server --environment=production",
     "test": "ember test",
     "test:node_debug": "node debug node_modules/ember-cli/bin/ember test --server",
-    "test:parallel": "PERCY_PARALLEL_TOTAL=4 percy-agent help && percy-agent start --detached && EMBER_ENV=test ember exam --environment=test --path dist --split=4 --parallel && percy-agent stop",
+    "test:parallel": "touch ./log/percy-agent-process.log && PERCY_PARALLEL_TOTAL=4 percy-agent start --detached && EMBER_ENV=test ember exam --environment=test --path dist --split=4 --parallel && percy-agent stop",
     "test:server": "ember test --server"
   },
   "lint-staged": {
