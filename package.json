@@ -18,7 +18,7 @@
     "start-production-for-testing": "ember server --environment=production",
     "test": "ember test",
     "test:node_debug": "node debug node_modules/ember-cli/bin/ember test --server",
-    "test:parallel": "touch ./log/percy-agent-process.log && PERCY_PARALLEL_TOTAL=4 percy-agent start --detached && EMBER_ENV=test ember exam --environment=test --path dist --split=4 --parallel && percy-agent stop",
+    "test:parallel": "PERCY_PARALLEL_TOTAL=4 percy-agent start --detached && EMBER_ENV=test ember exam --environment=test --path dist --split=4 --parallel && percy-agent stop",
     "test:server": "ember test --server"
   },
   "lint-staged": {
@@ -32,7 +32,7 @@
   "license": "MIT",
   "devDependencies": {
     "@ember/optional-features": "^0.6.1",
-    "@percy/agent": "^0.0.4",
+    "@percy/agent": "^0.0.5",
     "broccoli-asset-rev": "^2.7.0",
     "chai-as-promised": "^7.1.1",
     "ember-ajax": "^3.1.0",
