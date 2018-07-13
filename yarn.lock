@@ -117,7 +117,7 @@
 
 "@percy/agent@percy/percy-agent.git#master":
   version "0.0.3"
-  resolved "https://codeload.github.com/percy/percy-agent/tar.gz/054beb99f1e792b293b91f8d0ab392294d2e0e3c"
+  resolved "https://codeload.github.com/percy/percy-agent/tar.gz/fa345f50cfbf11ef7b7b2edecc09d4a7a8f2351a"
   dependencies:
     "@oclif/command" "^1.4.21"
     "@oclif/config" "^1.6.16"
