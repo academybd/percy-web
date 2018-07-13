@@ -115,9 +115,9 @@
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@oclif/screen/-/screen-1.0.2.tgz#c9d7c84b0ea60ecec8dd7a9b22c012ba9967aed8"
 
-"@percy/agent@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@percy/agent/-/agent-0.0.2.tgz#31bcd9a52fc1a45c4db89546ee895b23228bfd4b"
+"@percy/agent@percy/percy-agent.git#master":
+  version "0.0.3"
+  resolved "https://codeload.github.com/percy/percy-agent/tar.gz/a93f014355a3edcd0229c5154d9f65c8adc928c4"
   dependencies:
     "@oclif/command" "^1.4.21"
     "@oclif/config" "^1.6.16"
@@ -126,6 +126,7 @@
     "@types/express" "^4.11.1"
     "@types/sinon" "^4.3.1"
     "@types/winston" "^2.3.9"
+    axios "^0.18.0"
     body-parser "^1.18.2"
     cors "^2.8.4"
     express "^4.16.3"
@@ -672,6 +673,13 @@ aws-sign2@~0.7.0:
 aws4@^1.2.1, aws4@^1.6.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.7.0.tgz#d4d0e9b9dbfca77bf08eeb0a8a471550fe39e289"
+
+axios@^0.18.0:
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.18.0.tgz#32d53e4851efdc0a11993b6cd000789d70c05102"
+  dependencies:
+    follow-redirects "^1.3.0"
+    is-buffer "^1.1.5"
 
 babel-code-frame@^6.22.0, babel-code-frame@^6.26.0:
   version "6.26.0"
@@ -5093,6 +5101,12 @@ flow-parser@^0.*:
 follow-redirects@^1.0.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.0.tgz#234f49cf770b7f35b40e790f636ceba0c3a0ab77"
+  dependencies:
+    debug "^3.1.0"
+
+follow-redirects@^1.3.0:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.1.tgz#67a8f14f5a1f67f962c2c46469c79eaec0a90291"
   dependencies:
     debug "^3.1.0"
 
