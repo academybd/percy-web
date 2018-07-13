@@ -2,7 +2,7 @@ steps:
   - label: ":percy::hamster: test"
     commands:
       - "make build-test"
-      - "make test"
+      - "percy-agent start --detached && make test && percy-agent stop"
     timeout_in_minutes: 20
 
   - label: ":percy::hamster: publish"
