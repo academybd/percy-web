@@ -9,7 +9,7 @@ build-test: _pull_parent_image
 	docker-compose build --build-arg testing="true" web
 
 test: _pull_parent_image
-	docker-compose run web yarn percy-agent:start && yarn test:parallel && yarn percy-agent:stop
+	docker-compose run web sh -c "yarn percy-agent:start && yarn test:parallel && yarn percy-agent:stop"
 
 publish:
 	@utils/publish
