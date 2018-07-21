@@ -115,9 +115,9 @@
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@oclif/screen/-/screen-1.0.2.tgz#c9d7c84b0ea60ecec8dd7a9b22c012ba9967aed8"
 
-"@percy/agent@^0.0.10":
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/@percy/agent/-/agent-0.0.10.tgz#50885a0a1b3bf26eac87f4755643847615bf80c8"
+"@percy/agent@^0.0.11":
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/@percy/agent/-/agent-0.0.11.tgz#d8bddc5c34f09c6299c9d6bc598889f8e3b60613"
   dependencies:
     "@oclif/command" "^1.4.21"
     "@oclif/config" "^1.6.16"
