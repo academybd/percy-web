@@ -19,8 +19,8 @@
     "test": "ember test",
     "test:node_debug": "node debug node_modules/ember-cli/bin/ember test --server",
     "test:parallel": "EMBER_ENV=test ember exam --environment=test --path dist --split=4 --parallel",
-    "percy-agent:start": "LOG_LEVEL=debug percy-agent start --detached",
-    "percy-agent:stop": "LOG_LEVEL=debug percy-agent stop",
+    "percy-agent:start": "percy-agent start --detached",
+    "percy-agent:stop": "percy-agent stop",
     "test:server": "ember test --server"
   },
   "lint-staged": {
