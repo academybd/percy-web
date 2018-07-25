@@ -26,9 +26,6 @@ module.exports = function(environment) {
       extendedTimeout: 500,
       preventDuplicates: true,
     },
-    moment: {
-      allowEmpty: true,
-    },
 
     APP: {
       // Don't use these directly; use utils.buildApiUrl instead.
