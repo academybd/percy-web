@@ -7,6 +7,7 @@ import {DO_NOT_FORWARD_REDIRECT_ROUTES} from 'percy-web/router';
 import EnsureStatefulLogin from 'percy-web/mixins/ensure-stateful-login';
 import isDevWithProductionAPI from 'percy-web/lib/dev-auth';
 import {AUTH_REDIRECT_LOCALSTORAGE_KEY} from 'percy-web/router';
+import {resolve} from 'rsvp';
 
 export default Route.extend(ApplicationRouteMixin, EnsureStatefulLogin, {
   session: service(),
@@ -15,10 +16,8 @@ export default Route.extend(ApplicationRouteMixin, EnsureStatefulLogin, {
   currentUser: alias('session.currentUser'),
   launchDarkly: service(),
 
-
   beforeModel(transition) {
     this._super(...arguments);
-    this._setupLaunchDarkly(this.get('session.currentUser'));
     if (!this.get('session.isAuthenticated')) {
       this._storeTargetTransition(transition);
 
@@ -33,23 +32,21 @@ export default Route.extend(ApplicationRouteMixin, EnsureStatefulLogin, {
     return this._loadCurrentUser();
   },
 
+  model() {
+    if (this.get('currentUser')) {
+      return this.get('launchDarkly').initialize({key: this.get('currentUser.id')});
+    }
+    return resolve();
+  },
+
   sessionAuthenticated() {
     // This method is called after the session is authenticated by ember-simple-auth.
     // By default, it executes some pre-set redirects but we want our own redirect logic,
     // so we're not calling super here.
     this._loadCurrentUser().then(() => {
-      console.log('wut')
       this.closeLock();
       this._decideRedirect();
     });
-  },
-
-
-  _setupLaunchDarkly(user) {
-    let ldUser = {
-      key: 1,
-    };
-    return this.get('launchDarkly').initialize(ldUser);
   },
 
   _loadCurrentUser() {
