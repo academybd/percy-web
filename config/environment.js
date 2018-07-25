@@ -26,6 +26,9 @@ module.exports = function(environment) {
       extendedTimeout: 500,
       preventDuplicates: true,
     },
+    moment: {
+      allowEmpty: true,
+    },
 
     APP: {
       // Don't use these directly; use utils.buildApiUrl instead.
@@ -39,7 +42,8 @@ module.exports = function(environment) {
         projectsCollection: '/api/v1/organizations/%@/projects',
         projectBuilds: '/api/v1/projects/%@/builds',
         organizationUsers: '/api/v1/organizations/%@/organization-users',
-        organizationVersionControlIntegrations: '/api/v1/organizations/%@/version-control-integrations',
+        organizationVersionControlIntegrations:
+          '/api/v1/organizations/%@/version-control-integrations',
         subscription: '/api/v1/organizations/%@/subscription',
         invites: '/api/v1/organizations/%@/invites',
         user: '/api/v1/user',

@@ -10,7 +10,7 @@
       <div class="bar-item relative flex items-end flex-1 h-full mr-sm {{if (eq (moment-format stat.date 'D') (moment-format now 'D')) 'bar-item-today'}}"
         data-label="{{moment-format stat.date 'D'}}">
         <div class="bar w-full {{if (is-after stat.date [precision='days']) 'bg-gray-100 bar-future' 'bg-purple-600 hint--top hint--rounded hint--bounce'}}"
-          style="--bar-height: {{stat.percentOfHeight}}%" aria-label="{{moment-format stat.date 'MMM Do'}}: {{format-number stat.count}}">
+          style={{percentOfHeight}} aria-label="{{moment-format stat.date 'MMM Do'}}: {{format-number stat.count}}">
         </div>
       </div>
     {{/each}}

@@ -1,5 +1,6 @@
 import {computed} from '@ember/object';
 import Component from '@ember/component';
+import {htmlSafe} from '@ember/string';
 
 export default Component.extend({
   tagName: '',
@@ -14,11 +15,14 @@ export default Component.extend({
       return;
     }
 
-    return dayStats.map(dayStat => ({
-      date: dayStat[0],
-      count: dayStat[1],
-      percentOfHeight: (dayStat[1] / yAxisCeiling) * 100,
-    }));
+    return dayStats.map(dayStat => {
+      const barHeight = (dayStat[1] / yAxisCeiling) * 100;
+      return {
+        date: dayStat[0],
+        count: dayStat[1],
+        percentOfHeight: htmlSafe(`--bar-height: ${barHeight}%`),
+      };
+    });
   }),
 
   yAxisCeiling: computed('_dayStats', function() {

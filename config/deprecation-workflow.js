@@ -5,5 +5,6 @@ window.deprecationWorkflow.config = {
     {handler: 'silence', matchId: 'ember-simple-auth.session.authorize'},
     {handler: 'silence', matchId: 'ember-simple-auth.baseAuthorizer'},
     {handler: 'silence', matchId: 'ember-font-awesome.no-fa-prefix'},
+    {handler: 'silence', matchId: 'ember-console.deprecate-logger'},
   ],
 };
