@@ -7,7 +7,6 @@ import {DO_NOT_FORWARD_REDIRECT_ROUTES} from 'percy-web/router';
 import EnsureStatefulLogin from 'percy-web/mixins/ensure-stateful-login';
 import isDevWithProductionAPI from 'percy-web/lib/dev-auth';
 import {AUTH_REDIRECT_LOCALSTORAGE_KEY} from 'percy-web/router';
-import {registerWarnHandler} from '@ember/debug';
 
 export default Route.extend(ApplicationRouteMixin, EnsureStatefulLogin, {
   session: service(),
@@ -16,16 +15,6 @@ export default Route.extend(ApplicationRouteMixin, EnsureStatefulLogin, {
   currentUser: alias('session.currentUser'),
 
   beforeModel(transition) {
-    registerWarnHandler((message, options, next) => {
-      if (
-        options.id === 'ds.store.findRecord.id-mismatch' ||
-        options.id === 'ds.store.push-link-for-sync-relationship'
-      ) {
-        return;
-      } else {
-        next(...arguments);
-      }
-    });
     this._super(...arguments);
     if (!this.get('session.isAuthenticated')) {
       this._storeTargetTransition(transition);
