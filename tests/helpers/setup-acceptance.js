@@ -8,6 +8,7 @@ import {authenticateSession} from 'percy-web/tests/helpers/ember-simple-auth';
 /*eslint no-unused-vars: ["error", { "varsIgnorePattern": "it|describe" }]*/
 import {describe, it, beforeEach, afterEach} from 'mocha';
 import {expect} from 'chai';
+import StubClient from 'ember-launch-darkly/test-support/helpers/launch-darkly-client-test';
 
 export default function setupAcceptance({authenticate = true} = {}) {
   beforeEach(function() {
@@ -17,6 +18,7 @@ export default function setupAcceptance({authenticate = true} = {}) {
     if (authenticate) {
       authenticateSession(this.application);
     }
+    this.application.__container__.registry.register('service:launch-darkly-client', StubClient);
   });
 
   afterEach(function() {

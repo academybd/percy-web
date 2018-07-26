@@ -17,6 +17,7 @@ describe('ApplicationRoute', function() {
       'service:auth0',
       'service:analytics',
       'service:raven',
+      'service:launch-darkly',
     ],
   });
 
