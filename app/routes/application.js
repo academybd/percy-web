@@ -34,7 +34,16 @@ export default Route.extend(ApplicationRouteMixin, EnsureStatefulLogin, {
 
   model() {
     if (this.get('currentUser')) {
-      return this.get('launchDarkly').initialize({key: this.get('currentUser.id')});
+      return this.get('currentUser.organizations').then(organizations => {
+        return this.get('launchDarkly').initialize({
+          key: this.get('currentUser.userHash'),
+          name: this.get('currentUser.name'),
+          email: this.get('currentUser.email'),
+          custom: {
+            organizations: organizations.mapBy('id'),
+          },
+        });
+      });
     }
     return resolve();
   },
