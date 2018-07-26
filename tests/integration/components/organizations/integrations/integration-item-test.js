@@ -6,6 +6,7 @@ import {percySnapshot} from 'ember-percy';
 import hbs from 'htmlbars-inline-precompile';
 import IntegrationItem from 'percy-web/tests/pages/components/integration-item';
 import setupFactoryGuy from 'percy-web/tests/helpers/setup-factory-guy';
+import AdminMode from 'percy-web/lib/admin-mode';
 
 describe('Integration | Component | organizations/integrations/integration-item', function() {
   setupComponentTest('organizations/integrations/integration-item', {
@@ -15,6 +16,7 @@ describe('Integration | Component | organizations/integrations/integration-item'
   beforeEach(function() {
     setupFactoryGuy(this.container);
     IntegrationItem.setContext(this);
+    AdminMode.clear();
   });
 
   describe('with no integrations installed', function() {
