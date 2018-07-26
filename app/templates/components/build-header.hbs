@@ -79,10 +79,17 @@
       </div>
   {{else if build.isFailed}}
     {{#if (eq build.failureReason 'missing_resources')}}
+      {{#if isParallelBuildError}}
       <div class="p-2 m-2 bg-gray-000 rounded border border-gray-100">
-        <div class="font-semibold mb-1">Your CI service or client failed to correctly upload build and snapshot resources.</div>
-        This build can be safely ignored. It will not be used as a baseline for visual diffs. If these failures happen frequently, check your CI or client logs for failures.
+        <div class="font-semibold mb-1">Percy expected {{parallelBuildsExpected}} finalize calls for your parallelized build but only receievd {{parallelBuildsReceived}} finalize call(s).</div>
+        Check your CI logs to see if there was an error in one of your build pipelines. Make sure your parallel builds are <a href="https://docs.percy.io/docs/parallel-test-suites" target="_blank">configured properly</a>. If you'd like help troubleshooting this, feel free to <a href="#" {{action showSupport}} data-test-build-overview-show-support>reach out</a> and we can help get this fixed.
       </div>
+      {{else}}
+        <div class="p-2 m-2 bg-gray-000 rounded border border-gray-100">
+          <div class="font-semibold mb-1">Your CI service or client failed to correctly upload build and snapshot resources.</div>
+          This build can be safely ignored. It will not be used as a baseline for visual diffs. If these failures happen frequently, check your CI or client logs for failures.
+        </div>
+      {{/if}}
     {{/if}}
     {{#if (eq build.failureReason 'no_snapshots')}}
       <div class="p-2 m-2 bg-gray-000 rounded border border-gray-100">

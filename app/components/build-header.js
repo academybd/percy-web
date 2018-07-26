@@ -1,7 +1,7 @@
 import {or} from '@ember/object/computed';
 import Component from '@ember/component';
 import {computed, get} from '@ember/object';
-import {alias} from '@ember/object/computed';
+import {alias, readOnly} from '@ember/object/computed';
 import {htmlSafe} from '@ember/string';
 
 export default Component.extend({
@@ -9,6 +9,12 @@ export default Component.extend({
   tagName: null,
 
   buildCompletionPercent: alias('build.buildCompletionPercent'),
+
+  /* eslint-disable camelcase */
+  isParallelBuildError: readOnly('build.failureDetails.missing_parallel_builds'),
+  parallelBuildsExpected: readOnly('build.failureDetails.parallel_builds_expected'),
+  parallelBuildsReceived: readOnly('build.failureDetails.parallel_builds_received'),
+  /* eslint-enable camelcase */
 
   progressBarWidth: computed('buildCompletionPercent', function() {
     return `${get(this, 'buildCompletionPercent') - 100}%`;
