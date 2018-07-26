@@ -53,6 +53,14 @@ FactoryGuy.define('build', {
       totalComparisonsFinished: 12,
     },
     missingResources: {failureReason: 'missing_resources'},
+    missingParallelBuilds: {
+      failureReason: 'missing_resources',
+      failureDetails: {
+        missing_parallel_builds: true,
+        parallel_builds_expected: 4,
+        parallel_builds_received: 3,
+      },
+    },
     noSnapshots: {failureReason: 'no_snapshots'},
     renderTimeout: {
       failureReason: 'render_timeout',

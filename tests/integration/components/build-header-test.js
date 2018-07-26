@@ -26,6 +26,7 @@ describe('Integration: BuildHeader', function() {
     ['finished', 'withUpgradedBrowser'],
     ['finished', 'withTwoUpgradedBrowsers'],
     ['failed', 'missingResources'],
+    ['failed', 'missingParallelBuilds'],
     ['failed', 'noSnapshots'],
     ['failed', 'renderTimeout'],
     // This snapshot should not show any browser upgrade notice.
@@ -51,6 +52,22 @@ describe('Integration: BuildHeader', function() {
 
   it('sends showSupport action when clicking "reach out" on timed out build', function() {
     const build = make('build', 'failed', 'renderTimeout');
+    const showSupportStub = sinon.stub();
+    this.set('actions', {
+      showSupport: showSupportStub,
+    });
+    this.setProperties({
+      build,
+      showSupport: showSupportStub,
+    });
+    this.render(hbs`{{build-header build=build showSupport=(action "showSupport")}}`);
+
+    this.$('[data-test-build-overview-show-support]').click();
+    expect(showSupportStub).to.have.been.called; // eslint-disable-line
+  });
+
+  it('sends showSupport action when clicking "reach out" when missing parallel builds', function() {
+    const build = make('build', 'failed', 'missingParallelBuilds');
     const showSupportStub = sinon.stub();
     this.set('actions', {
       showSupport: showSupportStub,
